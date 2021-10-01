@@ -8,6 +8,7 @@ router
 .get('/', Turret.details)
 .get('/.well-known/stellar.toml', Turret.toml)
 .get('/tx-fees', TxFees.get)
+.post('/tx-fees/:publicKey', TxFees.pay)
 
 exports.TxFees = handleFees
 exports.handlers = {
@@ -19,13 +20,13 @@ exports.handlers = {
       return new Response(e.message)
     }
   },
-  // async scheduled(env: any) {
-  //   try {
-  //     return await handleScheduled(env)
-  //   } catch (e: any) {
-  //     return new Response(e.message)
-  //   }
-  // },
+  async scheduled(env: any) {
+    try {
+      return await handleScheduled(env)
+    } catch (e: any) {
+      return new Response(e.message)
+    }
+  },
 }
 
 export default exports;

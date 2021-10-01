@@ -1,4 +1,4 @@
-// declare const __VERSION__: string;
+declare const VERSION: string;
 import { response } from 'cfw-easy-utils';
 import { EnvProps } from '../types';
 
@@ -19,7 +19,7 @@ export class Turret {
       network: STELLAR_NETWORK,
       horizon: HORIZON_URL,
       runner: TURRET_RUN_URL,
-      version: '__VERSION__',
+      version: VERSION,
       fee: {
         min: XLM_FEE_MIN,
         max: XLM_FEE_MAX,

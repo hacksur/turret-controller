@@ -92,6 +92,8 @@ export function gatherTxSigners(transaction: any, signers: any) {
  * @returns {PaymentResult} The result of the payment
  * @throws If the transaction is unable to be submitted for any reason
  */
+
+// Max should be optional
 export async function processFeePayment(env: EnvProps, xdr: any, min: any, max: any) {
   const { HORIZON_URL, STELLAR_NETWORK, TURRET_ADDRESS } = env
 

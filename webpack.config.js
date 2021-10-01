@@ -16,7 +16,8 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   mode: 'development',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js'],
+    fallback: { stream: false }
   },
   module: {
     rules: [
@@ -44,12 +45,10 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       window: path.resolve(path.join(__dirname, 'src/@utils/window'))
+    }),
+    gitRevisionPlugin,
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(gitRevisionPlugin.version())
     })
-    // gitRevisionPlugin,
-    // new webpack.DefinePlugin({
-    //   __VERSION__: `${pkg.version}-${JSON.stringify(
-    //     gitRevisionPlugin.version()
-    //   )}`
-    // })
   ]
 };

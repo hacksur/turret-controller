@@ -8,5 +8,9 @@ type EnvProps = {
   XLM_FEE_MAX?: number,
   UPLOAD_DIVISOR?: number, 
   RUN_DIVISOR?: number,
+  TURRET_SIGNER?: string;
+  TX_FUNCTIONS?: KVNamespace,
+  META?: KVNamespace,
+  TX_FEES?: DurableObjectNamespace | any,
 }
 export { RequestMethodsProps, EnvProps };
