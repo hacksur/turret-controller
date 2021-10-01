@@ -2,10 +2,10 @@
 import { response } from 'cfw-easy-utils'
 import moment from 'moment'
 import { groupBy, map } from 'lodash'
-import { handleResponse } from './fetch'
+import { handleResponse } from './'
 import Bluebird from 'bluebird'
 
-export default async function flushSingleUseAuthTokens({ env }: { env: { META: KVNamespace, TX_FEES: KVNamespace}}) {
+export default async function flushSingleUseAuthTokens({ env }: { env: { META: KVNamespace, TX_FEES: DurableObjectNamespace}}) {
   const { META, TX_FEES } = env
 
   const { keys } = await META.list({prefix: 'suat:', limit: 100})
@@ -26,19 +26,17 @@ export default async function flushSingleUseAuthTokens({ env }: { env: { META: K
     }
   })
 
-  const promiseResponse = await Bluebird.mapSeries(groupedExpiredKeys, ({ publicKey, transactionHashes }: { publicKey: string, transactionHashes: string}) => {
-    // const txFeesId = TX_FEES.idFromName(publicKey)
+  const promiseResponse = await Bluebird.mapSeries(groupedExpiredKeys, ({ publicKey, transactionHashes }: { publicKey: string, transactionHashes: any[]}) => {
+    const txFeesId = TX_FEES.idFromName(publicKey)
+    const txFeesStub = TX_FEES.get(txFeesId)
 
-
-    // const txFeesStub = TX_FEES.get(txFeesId)
-
-    // return txFeesStub.fetch(`/${publicKey}`, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(transactionHashes)
-    // }).then(handleResponse)
+    return txFeesStub.fetch(`/${publicKey}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(transactionHashes)
+    }).then(handleResponse)
   })
 
   return response.json(promiseResponse)
