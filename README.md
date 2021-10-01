@@ -8,46 +8,28 @@
 [![license](https://img.shields.io/github/license/hacksur/turret-controller.svg)](LICENSE)
 [![npm downloads](https://img.shields.io/npm/dt/turret-controller.svg)](https://npm.im/turret-controller)
 
-> Wrangler implementation
-
-## Table of Contents
+> Stellar turret Wrangler implementation in typescript
 
 
-## Install
+## Development
 
-[npm][]:
-
-```sh
-npm install turret-controller
-```
-
-[yarn][]:
+- Copy your wrangler.toml from stellar-turret/wrangler
+- Run development
 
 ```sh
-yarn add turret-controller
+npm run dev
 ```
 
+## Endpoints
 
-## Usage
-
-```js
-const TurretController = require('turret-controller');
-
-const turretController = new TurretController();
-
-console.log(turretController.renderName());
-// script
+```sh
+http://localhost:8787/details
 ```
 
+```sh
+http://localhost:8787/toml
+```
 
-## Contributors
-
-
-## License
-
-
-##
-
-[npm]: https://www.npmjs.com/
-
-[yarn]: https://yarnpkg.com/
+```sh
+http://localhost:8787/tx-fees
+```
