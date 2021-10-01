@@ -48,6 +48,7 @@ export const handleRequest = async (router: Router,request: Request, env: EnvPro
   }
 }
 export async function handleResponse(response: any) {
+  response.json().then((item: any) => console.log(item))
   if (response.ok)
     return response.headers.get('content-type')?.indexOf('json') > -1
     ? response.json() 

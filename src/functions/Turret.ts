@@ -1,6 +1,5 @@
-
+// declare const __VERSION__: string;
 import { response } from 'cfw-easy-utils';
-import pkg from '../../package.json';
 import { EnvProps } from '../types';
 
 export class Turret {
@@ -20,7 +19,7 @@ export class Turret {
       network: STELLAR_NETWORK,
       horizon: HORIZON_URL,
       runner: TURRET_RUN_URL,
-      version: pkg.version,
+      version: '__VERSION__',
       fee: {
         min: XLM_FEE_MIN,
         max: XLM_FEE_MAX,

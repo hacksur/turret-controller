@@ -5,15 +5,15 @@ import Bluebird from 'bluebird'
 
 // TODO:
   // Better error reporting, use try/catch
-interface handleFeesI {
-  storage: any;
-  META: KVNamespace;
-  value: {
-    lastModifiedTime: number;
-    balance: number;
-  }
-}
-export class handleFees implements handleFeesI {
+// interface handleFeesI {
+//   storage: any;
+//   META: KVNamespace;
+//   value: {
+//     lastModifiedTime: number;
+//     balance: number;
+//   }
+// }
+export class handleFees implements DurableObject {
   storage: any;
   META: KVNamespace;
   value: {
@@ -50,7 +50,8 @@ export class handleFees implements handleFeesI {
     if (segment_1) {
       if (method === 'POST') {
         const transactionHash = segment_1
-
+        console.log('first POST')
+        console.log(transactionHash)
         // if (!this[transactionHash]) {
         //   const iTransactionHash = await this.storage.get(transactionHash) || null
     
@@ -69,7 +70,7 @@ export class handleFees implements handleFeesI {
         //   await this.storage.put(transactionHash, 'OK')
         // }  
   
-        // return response.text('OK')
+        return response.text('OK')
       }
 
       else if (method === 'DELETE') {
@@ -88,7 +89,7 @@ export class handleFees implements handleFeesI {
 
     else if (method === 'POST') {
       const body = await request.json()
-
+      console.log('second POST')
       // this.value.lastModifiedTime = moment.utc().format('x')
 
       // if (body.plus)

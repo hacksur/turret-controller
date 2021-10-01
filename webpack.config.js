@@ -44,13 +44,12 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       window: path.resolve(path.join(__dirname, 'src/@utils/window'))
-    }),
-    gitRevisionPlugin,
-    new webpack.DefinePlugin({
-      VERSION: JSON.stringify(gitRevisionPlugin.version()),
-      COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
-      BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
-      LASTCOMMITDATETIME: JSON.stringify(gitRevisionPlugin.lastcommitdatetime())
     })
+    // gitRevisionPlugin,
+    // new webpack.DefinePlugin({
+    //   __VERSION__: `${pkg.version}-${JSON.stringify(
+    //     gitRevisionPlugin.version()
+    //   )}`
+    // })
   ]
 };
