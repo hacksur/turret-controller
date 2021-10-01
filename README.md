@@ -14,10 +14,16 @@
 ## Development
 
 - Copy your wrangler.toml from stellar-turret/wrangler
+- Replace stellar.toml file with yours
 - Run development
 
 ```sh
 npm run dev
+```
+## Production
+
+```sh
+wrangler publish
 ```
 
 ## Endpoints
